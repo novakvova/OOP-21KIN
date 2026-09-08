@@ -30,7 +30,22 @@ class Abonent
         return info;
     }
 
-
-
-
+    //Метод для запису даних у файл. Формат даних ;
+    public string GetFileString()
+    {
+        return $"{_pib};{_address};{_phone}";
+    }
+    //Метод для перетворення рядка у Abonent
+    //static - це метод, який можна викликати без протреба
+    //створення об'єкта (тобто змінної даного класу)
+    public static Abonent FromFileString(string line)
+    {
+        //Split - ділить рядок на підрядки робить масив string []
+        var items = line.Split(';'); //'' - це 1 символ
+        if (items.Length == 3)
+        {
+            return new Abonent(items[0], items[2], items[1]);
+        }
+        return new Abonent();
+    }
 }
