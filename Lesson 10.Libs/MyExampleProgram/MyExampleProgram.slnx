@@ -1,0 +1,4 @@
+<Solution>
+  <Project Path="LibAbonent/LibAbonent.csproj" />
+  <Project Path="MyExampleProgram/MyExampleProgram.csproj" />
+</Solution>
