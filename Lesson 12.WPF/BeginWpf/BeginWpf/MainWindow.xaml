@@ -1,0 +1,35 @@
+﻿<Window x:Class="BeginWpf.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:BeginWpf"
+        mc:Ignorable="d"
+        Title="Головне вікно" Height="450" Width="800">
+    <Grid Name="myGrid">
+        <!--<TextBlock HorizontalAlignment="Center" 
+                   VerticalAlignment="Center" 
+                   FontSize="72">
+            Привіт WPF
+        </TextBlock>-->
+        <!--<Button FontWeight="Bold">
+            Моя кнопка
+        </Button>-->
+
+        <!--<Button Content="Моя кнопка" />-->
+
+        <!--<Button>
+            <Button.FontWeight>Bold</Button.FontWeight>
+            <Button.Content>Моя хороша кнопка</Button.Content>
+        </Button>-->
+
+        <!--<Button FontWeight="Bold">
+            <WrapPanel>
+                <TextBlock Padding="10" Foreground="Blue">Мультик</TextBlock>
+                <TextBlock Padding="10" Foreground="Red">Червноний текст</TextBlock>
+                <TextBlock Padding="10">Кнопочка</TextBlock>
+            </WrapPanel>
+        </Button>-->
+
+    </Grid>
+</Window>
