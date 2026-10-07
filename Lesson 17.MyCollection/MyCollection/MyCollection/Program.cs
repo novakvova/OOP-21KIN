@@ -72,7 +72,7 @@ void AddAnimal()
     string name = Console.ReadLine();
     Console.Write("Введіть вік тварини: ");
     int age = int.Parse(Console.ReadLine());
-    Dog dog = new Dog(name, age);
+    Animal dog = new Dog(name, age);
     myList.Add(dog);
 }
 
