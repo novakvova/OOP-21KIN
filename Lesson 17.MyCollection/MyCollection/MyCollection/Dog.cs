@@ -24,4 +24,18 @@ public class Dog
         str += $"Age: {_age}";
         return str;
     }
+
+    //Роблю перегрузку операторів == та != для класу Dog
+    public static bool operator ==(Dog d1, Dog d2)
+    {
+        if (d1._name.Equals(d2._name) && d1._age == d2._age)
+            return true;
+        else
+            return false;
+    }
+
+    public static bool operator !=(Dog d1, Dog d2)
+    {
+        return !(d1 == d2);
+    }
 }

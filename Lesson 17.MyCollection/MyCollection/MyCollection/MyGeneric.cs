@@ -34,6 +34,17 @@ public class MyGeneric
                 }
                 catch { }
             }
+            if(i is Dog)
+            {
+                try
+                {
+                    Dog myDog = (Dog)i;
+                    Dog searchDog = (Dog)item;
+                    if (myDog == searchDog)
+                        return i;
+                }
+                catch { }
+            }
             if(i == item) return i;
         }
         return null; 
