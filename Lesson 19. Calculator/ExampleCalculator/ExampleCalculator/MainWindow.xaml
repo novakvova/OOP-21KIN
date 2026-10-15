@@ -1,0 +1,76 @@
+﻿<Window x:Class="ExampleCalculator.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:ExampleCalculator"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="450" Width="800">
+    <DockPanel>
+        <TextBlock DockPanel.Dock="Top"
+                   FontSize="22"
+                   TextAlignment="Center"
+                   Margin="10"
+                   Foreground="Magenta">
+            Наш калькулятор
+        </TextBlock>
+        <StackPanel Background ="AliceBlue">
+            <TextBox FontSize="28" 
+                     Background="#FF5F5858"
+                     Foreground="White"
+                     Margin="5" 
+                     Padding="10" />
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition></ColumnDefinition>
+                    <ColumnDefinition></ColumnDefinition>
+                    <ColumnDefinition></ColumnDefinition>
+                    <ColumnDefinition></ColumnDefinition>
+                </Grid.ColumnDefinitions>
+                <Button Grid.Column="0"
+                        Padding="20"
+                        Background="#FF5F5858">
+                    <Button.Content>
+                        <TextBlock FontSize="18" 
+                                   Foreground="White">
+                            1
+                        </TextBlock>
+                    </Button.Content>
+                </Button>
+                <Button
+                    Grid.Column="1"
+                    Padding="20"
+                    Background="#FF5F5858">
+                    <Button.Content>
+                        <TextBlock FontSize="22" 
+                                   Foreground="White">
+                            2
+                        </TextBlock>
+                    </Button.Content>
+                </Button>
+                <Button
+                    Grid.Column="2"
+                    Padding="20"
+                    Background="#FF5F5858">
+                    <Button.Content>
+                        <TextBlock FontSize="22" 
+                                   Foreground="White">
+                            3
+                        </TextBlock>
+                    </Button.Content>
+                </Button>
+                <Button
+                    Grid.Column="3"
+                    Padding="20"
+                    Background="#FF5F5858">
+                    <Button.Content>
+                        <TextBlock FontSize="22" 
+                                   Foreground="White">
+                            +
+                        </TextBlock>
+                    </Button.Content>
+                </Button>
+            </Grid>
+        </StackPanel>
+    </DockPanel>
+</Window>
