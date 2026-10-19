@@ -81,7 +81,7 @@
             <GroupBox Grid.Row="0" Grid.Column="1" Header="Операції" 
                       Margin="5" Padding="6">
                 <StackPanel Width="140">
-                    <Button Content="A+B"/>
+                    <Button Content="A+B" Click="Button_Add_Click"/>
                 </StackPanel>
             </GroupBox>
 
@@ -90,7 +90,7 @@
                       Margin="5" Padding="6">
                 <ScrollViewer HorizontalScrollBarVisibility="Auto"
                                   VerticalScrollBarVisibility="Auto">
-                    <UniformGrid x:Name="GridС" 
+                    <UniformGrid x:Name="GridC" 
                                      HorizontalAlignment="Left"
                                      VerticalAlignment="Top"/>
                 </ScrollViewer>
