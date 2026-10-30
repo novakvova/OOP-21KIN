@@ -1,0 +1,4 @@
+<Solution>
+  <Project Path="ExampleLambda/ExampleLambda.csproj" />
+  <Project Path="WinFormEvent/WinFormEvent.csproj" />
+</Solution>
