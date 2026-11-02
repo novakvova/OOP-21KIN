@@ -19,10 +19,31 @@
                      MinWidth="400" 
                      Margin ="20,0,0,0" 
                      x:Name="txtUrl"  />
+            <!--Читання вміступ папки - відбраження зображень, ім'я, розмір і дата створення-->
             <Button x:Name="btnReadImages" 
+                    Click="btnReadImages_Click"
                     Margin="20,0"
                     Padding="12,6"
                     Content="Читання з папки"/>
         </WrapPanel>
+
+        <ListBox Name="GalleryList" Grid.Row="1" Margin="10"
+                 ScrollViewer.HorizontalScrollBarVisibility="Disabled">
+
+            <ListBox.ItemsPanel>
+                <ItemsPanelTemplate>
+                    <WrapPanel />
+                </ItemsPanelTemplate>
+            </ListBox.ItemsPanel>
+
+            <ListBox.ItemTemplate>
+                <DataTemplate>
+                    <Image Source="{Binding}" Width="150" Height="150"
+                           Stretch="UniformToFill" Margin="5"/>
+                </DataTemplate>
+            </ListBox.ItemTemplate>
+
+        </ListBox>
+
     </Grid>
 </Window>
