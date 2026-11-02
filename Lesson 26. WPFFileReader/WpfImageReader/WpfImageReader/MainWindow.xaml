@@ -38,8 +38,16 @@
 
             <ListBox.ItemTemplate>
                 <DataTemplate>
-                    <Image Source="{Binding}" Width="150" Height="150"
-                           Stretch="UniformToFill" Margin="5"/>
+                    <!--<Image Source="{Binding}" Width="150" Height="150"
+                           Stretch="UniformToFill" Margin="5"/>-->
+                    <StackPanel>
+                        <Image Source="{Binding Image}"
+                               MaxHeight="150"
+                               Stretch="Uniform"/>
+                        <TextBlock Text="{Binding FileName}" TextTrimming="CharacterEllipsis"/>
+                        <TextBlock Text="{Binding FileSize, StringFormat={}{0} Кб}"/>
+                        <TextBlock Text="{Binding DateCreated, StringFormat=dd.MM.yyyy HH:mm}"/>
+                    </StackPanel>
                 </DataTemplate>
             </ListBox.ItemTemplate>
 

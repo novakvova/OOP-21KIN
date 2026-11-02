@@ -45,11 +45,25 @@ public partial class MainWindow : Window
         var files = Directory.GetFiles(path)
             .Where(f => Extensions.Contains(Path.GetExtension(f).ToLower()));
 
-        var images = new List<BitmapImage>();
+        //var images = new List<BitmapImage>();
+        //foreach (var file in files)
+        //{
+        //    var dateCreation = File.GetCreationTime(file);
+        //    var fileSize = file.Length;
+        //    var fileName = Path.GetFileName(file);
+        //    var bitmap = new BitmapImage();
+        //    bitmap.BeginInit();
+        //    bitmap.UriSource = new Uri(file);
+        //    bitmap.DecodePixelWidth = 300; //економія пам'яті
+        //    bitmap.CacheOption = BitmapCacheOption.OnLoad; //Щоб не блокувати фото
+        //    bitmap.EndInit();
+        //    images.Add(bitmap);
+        //}
+        var images = new List<ImageItem>();
         foreach (var file in files)
         {
             var dateCreation = File.GetCreationTime(file);
-            var fileSize = file.Length;
+            var fileSize = File.ReadAllBytes(file).Length;
             var fileName = Path.GetFileName(file);
             var bitmap = new BitmapImage();
             bitmap.BeginInit();
@@ -57,8 +71,15 @@ public partial class MainWindow : Window
             bitmap.DecodePixelWidth = 300; //економія пам'яті
             bitmap.CacheOption = BitmapCacheOption.OnLoad; //Щоб не блокувати фото
             bitmap.EndInit();
-            images.Add(bitmap);
+            images.Add(new ImageItem()
+            {
+                Image=bitmap,
+                FileName=fileName,
+                DateCreated=dateCreation,
+                FileSize=fileSize/1024,
+            });
         }
+
         GalleryList.ItemsSource = images;
     }
 
