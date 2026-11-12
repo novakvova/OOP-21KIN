@@ -13,6 +13,6 @@ public class MyDataContext : DbContext
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
     {
         //Назвай файлу де зберігаються користувачів
-        optionsBuilder.UseSqlite("Data Source=MyTest.db");
+        optionsBuilder.UseSqlite("Data Source=DotNetTest.db");
     }
 }

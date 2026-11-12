@@ -16,5 +16,5 @@ public class QuestionEntity
 
     public TestEntity Test { get; set; } = null!;
 
-    public ICollection<AnswerEntity> Answers { get; set; } = null!;
+    public ICollection<AnswerEntity> Answers { get; set; } = new List<AnswerEntity>();
 }

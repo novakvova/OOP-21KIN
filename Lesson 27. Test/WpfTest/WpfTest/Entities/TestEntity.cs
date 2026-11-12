@@ -21,5 +21,5 @@ public class TestEntity
     [Range(1, 60)]
     public int? TimeLimitMinutes { get; set; }
 
-    public ICollection<QuestionEntity> Questions { get; set; } = null!;
+    public ICollection<QuestionEntity> Questions { get; set; } = new List<QuestionEntity>();
 }
