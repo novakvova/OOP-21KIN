@@ -5,8 +5,13 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:WpfTest"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
-    <Grid>
-
-    </Grid>
+        Title="Тест" Height="400" Width="600" WindowStartupLocation="CenterScreen">
+    <StackPanel Margin="16">
+        <ProgressBar x:Name="ProgressBar" Height="18" Minimum="0" />
+        <TextBlock x:Name="ProgressText" Margin="0,8,0,0" FontWeight="Bold" />
+        <TextBlock x:Name="QuestionText" Margin="0,12" FontSize="18" TextWrapping="Wrap" />
+        <StackPanel x:Name="AnswersPanel" Margin="0,8" />
+        <Button x:Name="NextButton" Content="Далі" Width="120" Margin="0,16,0,0"
+                HorizontalAlignment="Right" Click="NextButton_Click" />
+    </StackPanel>
 </Window>
