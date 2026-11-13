@@ -5,8 +5,71 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:WpfTest"
         mc:Ignorable="d"
-        Title="BeginWindow" Height="450" Width="800">
-    <Grid>
-        
+        Title="Тестування" Height="560" Width="560"
+        WindowStartupLocation="CenterScreen"
+        Background="{StaticResource BgBrush}">
+    <Grid Margin="20">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="Auto" />
+        </Grid.RowDefinitions>
+
+        <TextBlock Grid.Row="0" 
+                   Text="Тестування" 
+                   FontSize="22" 
+                   FontWeight="Bold" 
+                   Margin="0,0,0,16" />
+
+        <!-- ПІБ -->
+        <Grid Grid.Row="1">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="110" />
+                <ColumnDefinition Width="*" />
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+            </Grid.RowDefinitions>
+
+            <TextBlock Grid.Row="0" Grid.Column="0" Text="Прізвище *" VerticalAlignment="Center" Margin="0,0,0,8" />
+            <TextBox x:Name="txtLastName" Grid.Row="0" Grid.Column="1" MaxLength="100" Margin="0,0,0,8" />
+
+            <TextBlock Grid.Row="1" Grid.Column="0" Text="Ім'я *" VerticalAlignment="Center" Margin="0,0,0,8" />
+            <TextBox x:Name="txtFirstName" Grid.Row="1" Grid.Column="1" MaxLength="100" Margin="0,0,0,8" />
+
+            <TextBlock Grid.Row="2" Grid.Column="0" Text="По батькові" VerticalAlignment="Center" />
+            <TextBox x:Name="txtMiddleName" Grid.Row="2" Grid.Column="1" MaxLength="100" />
+        </Grid>
+
+        <!-- Список тестів -->
+        <TextBlock Grid.Row="2" 
+                   Text="Оберіть тест:" 
+                   FontWeight="SemiBold" 
+                   Margin="0,20,0,8" />
+
+        <ListBox x:Name="TestsListBox" Grid.Row="3" Margin="0,0,0,0">
+            <ListBox.ItemTemplate>
+                <DataTemplate>
+                    <StackPanel>
+                        <TextBlock Text="{Binding Title}" FontWeight="SemiBold" />
+                        <TextBlock Text="{Binding Description}" Foreground="{StaticResource MutedBrush}"
+                                   TextWrapping="Wrap" Margin="0,2,0,0" />
+                        <WrapPanel>
+                            <TextBlock Text="{Binding TimeLimitMinutes, StringFormat='Час: {0} хвилин'}"
+                                       Margin="0,0,10,0" />
+                            <TextBlock Text="{Binding QuestionsCount, StringFormat='Кількість питань: {0}'}" />
+                        </WrapPanel>
+                    </StackPanel>
+                </DataTemplate>
+            </ListBox.ItemTemplate>
+        </ListBox>
+
+        <!-- Кнопка -->
+        <Button Grid.Row="4" x:Name="StartButton" Content="Почати тест" Width="160" Margin="0,16,0,0"
+                HorizontalAlignment="Right" Click="StartButton_Click" />
     </Grid>
 </Window>

@@ -31,17 +31,17 @@ See `spec.md` for the full project specification (data model, architectural deci
 - **Data access**: EF Core with SQLite (`Microsoft.EntityFrameworkCore.Sqlite`). `MyDataContext` hardcodes `Data Source=DotNetTest.db` in `OnConfiguring`, so the database file is created relative to the working directory (normally `bin/Debug/net9.0-windows/`). No DI container — code instantiates `new MyDataContext()` directly.
 - **Schema management**: there are no EF migrations. The schema is created by `Database.EnsureCreated()` in `App.OnStartup`. Because `EnsureCreated` never alters an existing database, after changing entities you must delete `DotNetTest.db` (or add migrations) for the schema change to take effect.
 - **Seed data**: if the `Tests` table is empty, `App.OnStartup` loads `SeedData/users.json` (copied to output) into `TestSeedModel` (`Models/TestSeedModel.cs`) via `Newtonsoft.Json` and saves the tests with questions and answers.
-- **Startup**: `App.xaml` has no `StartupUri`; `App.OnStartup` (in `App.xaml.cs`) does DB init/seed, then creates and shows `BeginWindow` manually. `TestWindow` (quiz taking) is not opened from `BeginWindow` yet.
+- **Startup**: `App.xaml` has no `StartupUri`; `App.OnStartup` (in `App.xaml.cs`) does DB init/seed, then creates and shows `BeginWindow` manually. `BeginWindow` opens `TestWindow` with the selected test id and participant name. Shared dark-theme styles live in `App.xaml`.
 - **Entities** (`Entities/`, configured with data annotations, not Fluent API):
   - `TestEntity` → many `QuestionEntity` → many `AnswerEntity` (`IsCorrect` flag marks correct answers).
   - `TestResultEntity` records one attempt at a test (student name, correct/wrong counts, start/finish times).
   - `TestResultAnswerEntity` (per-answer record of an attempt) exists but is **not** registered as a `DbSet` and is not reachable via navigation, so it is currently not part of the EF model/database. Add a `DbSet` to `MyDataContext` if it is needed.
   - Table names are inconsistent (`Tests`, `Answers`, `TestResultEntity`, `tblTestResultAnswers`, and `QuestionEntity` falls back to its DbSet name `Questions`) — set via `[Table]` attributes.
-- **UI**: `BeginWindow` is an empty shell; `TestWindow` runs a quiz (questions in order, `RadioButton`/`CheckBox` answers, result in `MessageBox`) and currently holds DB query and scoring logic in code-behind, which violates the `Services/` rule below and should be moved when touched. No MVVM framework is in use (code-behind style).
+- **UI**: `BeginWindow` (participant name, test list, start button) and `TestWindow` (quiz: questions in order, `RadioButton`/`CheckBox` answers, result in `MessageBox`). `TestWindow` still holds scoring logic in code-behind, which violates the `Services/` rule below and should be moved when touched. DB reads go through `Services/TestService.cs`. No MVVM framework is in use (code-behind style).
 
 ## Coding rules
 
-- Use file-scoped namespaces (`namespace WpfTest.Entities;`) matching the folder path. `BeginWindow.xaml.cs` still uses a block namespace and unused `using`s — convert it when touching that file.
+- Use file-scoped namespaces (`namespace WpfTest.Entities;`) matching the folder path. Keep window XAML styles in `App.xaml` (dark theme) rather than per-window.
 - Entity classes live in `Entities/`, end with the `Entity` suffix, and are configured with data annotations (`[Key]`, `[Required]`, `[StringLength]`, `[ForeignKey(nameof(...))]`, `[Table]`), not Fluent API.
 - Nullable reference types are enabled: required strings get `= null!` or `= string.Empty`, optional ones are `string?`. Initialize collection navigations with `= new List<T>()`, not `= null!`.
 - Use `DateTime.UtcNow` for timestamps (existing `DateTime.SpecifyKind(DateTime.Now, DateTimeKind.Utc)` is a known bug; don't copy it).

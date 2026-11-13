@@ -1,35 +1,37 @@
-﻿using Microsoft.EntityFrameworkCore;
-using System.Windows;
+﻿using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Controls.Primitives;
 using WpfTest.Entities;
+using WpfTest.Services;
 
 namespace WpfTest;
 
 /// <summary>
-/// Головне вікно: проходження першого тесту з БД, питання по черзі.
+/// Вікно проходження тесту: питання по черзі, підсумок у MessageBox.
 /// </summary>
 public partial class TestWindow : Window
 {
     private readonly string _testTitle;
+    private readonly string _participantName;
     private readonly List<QuestionEntity> _questions;
     private int _index;
     private int _correct;
     private int _wrong;
 
-    public TestWindow()
+    public TestWindow(int testId, string lastName, string firstName, string? middleName)
     {
         InitializeComponent();
 
         using var db = new MyDataContext();
-        var test = db.Tests
-            .Include(t => t.Questions)
-            .ThenInclude(q => q.Answers)
-            .First();
+        var test = new TestService(db).GetTestWithQuestions(testId)
+            ?? throw new InvalidOperationException("Тест не знайдено.");
 
         _testTitle = test.Title;
+        _participantName = string.Join(" ",
+            new[] { lastName, firstName, middleName }
+                .Where(s => !string.IsNullOrEmpty(s)));
         _questions = test.Questions.OrderBy(q => q.Id).ToList();
-        Title = _testTitle;
+        Title = $"{_testTitle} — {_participantName}";
 
         ShowQuestion();
     }
@@ -97,6 +99,7 @@ public partial class TestWindow : Window
 
         MessageBox.Show(
             $"Тест: {_testTitle}\n" +
+            $"Учасник: {_participantName}\n" +
             $"Правильних відповідей: {_correct}\n" +
             $"Неправильних відповідей: {_wrong}\n" +
             $"Всього питань: {_questions.Count}",
