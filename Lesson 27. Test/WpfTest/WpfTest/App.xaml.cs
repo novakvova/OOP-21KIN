@@ -58,8 +58,8 @@ public partial class App : Application
             fileData.SaveChanges();
         }
 
-        int countTest = fileData.Tests.Count();
-        MessageBox.Show("Кількість тестів в БД: " + countTest);
+        //int countTest = fileData.Tests.Count();
+        //MessageBox.Show("Кількість тестів в БД: " + countTest);
 
         MainWindow window = new MainWindow();
         window.Show();
