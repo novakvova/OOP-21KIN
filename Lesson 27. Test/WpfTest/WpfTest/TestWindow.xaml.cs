@@ -9,7 +9,7 @@ namespace WpfTest;
 /// <summary>
 /// Головне вікно: проходження першого тесту з БД, питання по черзі.
 /// </summary>
-public partial class MainWindow : Window
+public partial class TestWindow : Window
 {
     private readonly string _testTitle;
     private readonly List<QuestionEntity> _questions;
@@ -17,7 +17,7 @@ public partial class MainWindow : Window
     private int _correct;
     private int _wrong;
 
-    public MainWindow()
+    public TestWindow()
     {
         InitializeComponent();
 

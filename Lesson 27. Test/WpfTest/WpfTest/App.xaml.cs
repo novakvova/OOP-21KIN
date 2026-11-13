@@ -61,7 +61,7 @@ public partial class App : Application
         //int countTest = fileData.Tests.Count();
         //MessageBox.Show("Кількість тестів в БД: " + countTest);
 
-        MainWindow window = new MainWindow();
+        BeginWindow window = new BeginWindow();
         window.Show();
     }
 }
