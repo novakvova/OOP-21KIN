@@ -1,7 +1,6 @@
 ﻿using System.Windows;
 using WpfTest.Entities;
 using WpfTest.Models;
-using WpfTest.Services;
 
 namespace WpfTest;
 
@@ -20,6 +19,7 @@ public partial class BeginWindow : Window
             .OrderBy(t => t.Title)
             .Select(x=> new TestItemModel
             {
+                Id = x.Id,
                 Title = x.Title,
                 Description = x.Description,
                 QuestionsCount = x.Questions.Count,
@@ -51,8 +51,11 @@ public partial class BeginWindow : Window
                 MessageBoxButton.OK, MessageBoxImage.Warning);
             return;
         }
+        var select = TestsListBox.SelectedItem as TestItemModel;
+
+        //MessageBox.Show(select.Id.ToString());
         var testWindow = new TestWindow(
-            1,
+            select.Id,
             lastName,
             firstName,
             middleName.Length == 0 ? null : middleName);

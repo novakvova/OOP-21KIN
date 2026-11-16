@@ -9,6 +9,7 @@ public class MyDataContext : DbContext
     public DbSet<QuestionEntity> Questions { get; set; }
     public DbSet<AnswerEntity> Answers { get; set; }
     public DbSet<TestResultEntity> TestResults { get; set; }
+    public DbSet<TestResultAnswerEntity> TestResultAnswers { get; set; }
 
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
     {
