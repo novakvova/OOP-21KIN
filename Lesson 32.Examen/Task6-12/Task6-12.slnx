@@ -1,0 +1,5 @@
+<Solution>
+  <Project Path="MyCalcLib/MyCalcLib.csproj" />
+  <Project Path="MyMatrixLib/MyMatrixLib.csproj" />
+  <Project Path="Task6-12/Task6-12.csproj" />
+</Solution>
